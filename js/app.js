@@ -262,17 +262,21 @@ document.addEventListener('DOMContentLoaded', () => {
           ? `✨ Tashrifingiz tasdiqlandi (${guestCount} kishi)`
           : `🕊️ Hurmat bilan qabul qilindi`;
 
-        // Configure Telegram Send Button
+        // Configure Telegram Send Button with Live Web Link
         if (vipTelegramBtn) {
+          const liveUrl = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'https://abdulazizfrost.github.io/sunnat-toy-invitation/'
+            : window.location.href;
+
           const text = encodeURIComponent(
-            `🌟 Sunnat To'y Taklifnomasi — Muhammadali\n\n` +
-            `👤 Hurmatli: ${name}\n` +
-            `📞 Tel: ${phone}\n` +
-            `✅ Holat: ${attendance === 'Boraman' ? "Albatta boramiz (" + guestCount + " kishi)" : "Afsuski, bora olmaymiz"}\n` +
-            (wishes ? `💌 Tilaklar: ${wishes}\n` : '') +
-            `\nKatta rahmat!`
+            `🌙 SUNNAT TO'Y TAKLIFNOMASI — MUHAMMADALI\n\n` +
+            `👤 Mehmon: ${name}\n` +
+            `📞 Telefon: ${phone}\n` +
+            `✅ Tashrif: ${attendance === 'Boraman' ? "Albatta boramiz (" + guestCount + " kishi)" : "Afsuski, bora olmaymiz"}\n` +
+            (wishes ? `💌 Ezgu tilaklar: ${wishes}\n` : '') +
+            `\n✨ Katta rahmat!`
           );
-          vipTelegramBtn.href = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${text}`;
+          vipTelegramBtn.href = `https://t.me/share/url?url=${encodeURIComponent(liveUrl)}&text=${text}`;
         }
 
         vipModal.classList.add('active');
