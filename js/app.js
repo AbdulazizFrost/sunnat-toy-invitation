@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 3. COUNTDOWN TIMER ENGINE
-  // Target Event Date: August 25, 2026 07:00:00 (Tashkent Time UTC+5)
-  const targetDate = new Date('2026-08-25T07:00:00+05:00').getTime();
+  // Target Event Date: September 8, 2026 07:00:00 (Tashkent Time UTC+5)
+  const targetDate = new Date('2026-09-08T07:00:00+05:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
@@ -83,11 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
     calendarBtn.addEventListener('click', (e) => {
       e.preventDefault();
       
-      const title = "Muhammadalining Sunnat To'yi";
-      const description = "Muhammadalining Sunnat to'yi tantanasi va dasturxoni. Versal Tantanalar Saroyi, Toshkent.";
-      const location = "Versal Tantanalar Saroyi, Toshkent sh., Navoiy ko'chasi";
-      const startDate = "20260825T020000Z"; // 07:00 UTC+5 is 02:00 UTC
-      const endDate = "20260825T180000Z";   // 23:00 UTC+5 is 18:00 UTC
+      const title = "Komronning Sunnat To'yi";
+      const description = "Komronning Sunnat to'yi tantanasi va dasturxoni. G‘urtepa, 'Oqsaroy' to‘yxonasi.";
+      const location = "G‘urtepa, 'Oqsaroy' to‘yxonasi";
+      const startDate = "20260908T020000Z"; // 07:00 UTC+5 is 02:00 UTC
+      const endDate = "20260908T180000Z";   // 23:00 UTC+5 is 18:00 UTC
 
       // Google Calendar URL
       const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(description)}&location=${encodeURIComponent(location)}`;
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (copyBtn) {
     copyBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const addressText = "Toshkent shahri, Shayxontohur tumani, Navoiy shoh ko'chasi, 'Versal' Tantanalar Saroyi";
+      const addressText = "G‘urtepa, 'Oqsaroy' to‘yxonasi";
       
       if (navigator.clipboard) {
         navigator.clipboard.writeText(addressText).then(() => {
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const vipTelegramBtn = document.getElementById('vip-telegram-btn');
 
   // Check if RSVP is already saved in localStorage
-  const savedRsvp = localStorage.getItem('sunnat_rsvp_muhammadali');
+  const savedRsvp = localStorage.getItem('sunnat_rsvp_komron');
   if (savedRsvp) {
     try {
       const data = JSON.parse(savedRsvp);
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Save to localStorage
       const rsvpData = { name, phone, attendance, guestCount, wishes, timestamp: new Date().toISOString() };
-      localStorage.setItem('sunnat_rsvp_muhammadali', JSON.stringify(rsvpData));
+      localStorage.setItem('sunnat_rsvp_komron', JSON.stringify(rsvpData));
 
       // Trigger Confetti
       launchGoldenConfetti();
@@ -269,12 +269,13 @@ document.addEventListener('DOMContentLoaded', () => {
             : window.location.href;
 
           const text = encodeURIComponent(
-            `🌙 SUNNAT TO'Y TAKLIFNOMASI — MUHAMMADALI\n\n` +
+            `🌙 SUNNAT TO'Y TAKLIFNOMASI — KOMRON\n\n` +
             `👤 Mehmon: ${name}\n` +
             `📞 Telefon: ${phone}\n` +
             `✅ Tashrif: ${attendance === 'Boraman' ? "Albatta boramiz (" + guestCount + " kishi)" : "Afsuski, bora olmaymiz"}\n` +
             (wishes ? `💌 Ezgu tilaklar: ${wishes}\n` : '') +
-            `\n✨ Katta rahmat!`
+            `\n📍 Manzil: G‘urtepa, "Oqsaroy" to‘yxonasi • 8-Sentabr, 2026\n` +
+            `✨ Katta rahmat!`
           );
           vipTelegramBtn.href = `https://t.me/share/url?url=${encodeURIComponent(liveUrl)}&text=${text}`;
         }
@@ -449,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const shareWhatsappBtn = document.getElementById('share-whatsapp-btn');
   const shareCopyLinkBtn = document.getElementById('share-copylink-btn');
 
-  const shareText = "Muhammadalining Sunnat To'yiga lutfan taklif etamiz! 🌟";
+  const shareText = "Komronning Sunnat To'yiga lutfan taklif etamiz! 🌟";
   const shareUrl = window.location.href;
 
   if (shareTelegramBtn) {
