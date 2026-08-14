@@ -14,27 +14,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 100);
 
-  // 2. CTA UNLOCK & SMOOTH SCROLL ("TAKLIFNOMANI OCHISH")
+  // 2. CTA 2-PHASE SCREEN TRANSITION ("TAKLIFNOMANI OCHISH")
   const ctaBtn = document.getElementById('hero-cta-btn');
-  if (ctaBtn) {
+  const heroSectionEl = document.getElementById('hero-section');
+
+  if (ctaBtn && heroSectionEl) {
     ctaBtn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // 1. Unlock the invitation body with smooth unfolding animation
-      document.body.classList.add('site-unlocked');
-
-      // 2. Auto-start ambient audio on first user gesture if not already playing
+      // 1. Start ambient oriental audio
       if (!isAudioPlaying && typeof playAmbientAudio === 'function') {
         playAmbientAudio();
       }
 
-      // 3. Smooth scroll down to the invitation content
+      // 2. Play closing exit animation on the Hero cover screen
+      document.body.classList.add('is-transitioning');
+      heroSectionEl.classList.add('hero-closing');
+
+      // 3. Smoothly switch to the unlocked full invitation site
       setTimeout(() => {
-        const targetSection = document.getElementById('taklif-section');
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 350);
+        document.body.classList.remove('is-transitioning');
+        document.body.classList.add('site-unlocked');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }, 700);
     });
   }
 
