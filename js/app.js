@@ -23,23 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
       // 1. Unlock the invitation body with smooth unfolding animation
       document.body.classList.add('site-unlocked');
 
-      // 2. Launch celebration golden confetti
-      if (typeof launchGoldenConfetti === 'function') {
-        launchGoldenConfetti();
-      }
-
-      // 3. Auto-start ambient audio on first user gesture if not already playing
+      // 2. Auto-start ambient audio on first user gesture if not already playing
       if (!isAudioPlaying && typeof playAmbientAudio === 'function') {
         playAmbientAudio();
       }
 
-      // 4. Smooth scroll down to the invitation content
+      // 3. Smooth scroll down to the invitation content
       setTimeout(() => {
         const targetSection = document.getElementById('taklif-section');
         if (targetSection) {
           targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 300);
+      }, 350);
     });
   }
 
