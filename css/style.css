@@ -589,30 +589,100 @@ body {
 }
 
 .name-text {
-  background: linear-gradient(135deg, #fff3dc 0%, #ecd096 35%, #ffffff 50%, #c6a15b 75%, #9d7d43 100%);
+  background: linear-gradient(
+    115deg,
+    #d4af37 0%,
+    #fff6dd 18%,
+    #ffffff 26%,
+    #f3dfa2 34%,
+    #c6a15b 50%,
+    #8f6e30 62%,
+    #eed599 76%,
+    #ffffff 84%,
+    #d4af37 100%
+  );
+  background-size: 240% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(198, 161, 91, 0.45));
+  filter: 
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.95))
+    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.9))
+    drop-shadow(0 0 20px rgba(212, 175, 55, 0.45));
+  animation: royalGoldGleam 6s ease-in-out infinite alternate;
 }
 
-/* Subtle Golden Single Sweep Accent */
-.name-shimmer {
+@keyframes royalGoldGleam {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Subtle Jewel Diamond Sparkles on Letter Accents */
+.gold-sparkle {
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transform: skewX(-25deg);
+  width: 12px;
+  height: 12px;
   pointer-events: none;
-  animation: singleSweep 3.5s ease-out 1.2s forwards;
+  z-index: 3;
 }
 
-@keyframes singleSweep {
-  0% { left: -100%; opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { left: 160%; opacity: 0; }
+.gold-sparkle::before,
+.gold-sparkle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  box-shadow: 0 0 6px #fff3dc, 0 0 14px rgba(212, 175, 55, 0.85);
+  border-radius: 50%;
+}
+
+.gold-sparkle::before {
+  width: 12px;
+  height: 2px;
+}
+
+.gold-sparkle::after {
+  width: 2px;
+  height: 12px;
+}
+
+.sparkle-1 {
+  top: -2px;
+  left: 1%;
+  animation: diamondGlint 4.5s ease-in-out infinite;
+}
+
+.sparkle-2 {
+  top: 0px;
+  right: 1%;
+  animation: diamondGlint 4.5s ease-in-out 2.25s infinite;
+}
+
+@keyframes diamondGlint {
+  0%, 100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  35% {
+    transform: scale(1.1) rotate(45deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25) rotate(90deg);
+    opacity: 1;
+  }
+  65% {
+    transform: scale(0) rotate(135deg);
+    opacity: 0;
+  }
 }
 
 /* Floral Divider Ornament below MUHAMMADALI (Width = 33.4%) */
