@@ -750,8 +750,8 @@ body {
 /* ==========================================================================
    2-PHASE SCREEN TRANSITION: HERO COVER -> MAIN INVITATION
    When "TAKLIFNOMANI OCHISH" is clicked:
-   1. Screen 1 (Hero) closes with an elegant upward glide & dissolve animation.
-   2. Screen 2 (Main Invitation) opens with a smooth fade-in, scale & upward slide.
+   1. Screen 1 (Hero) elements disappear in exact reverse sequence of entrance.
+   2. Screen 2 (Main Invitation) smoothly takes its place with an elegant reveal.
    ========================================================================== */
 body:not(.site-unlocked) {
   overflow: hidden;
@@ -782,31 +782,92 @@ body:not(.site-unlocked) .hero-section {
   max-height: none;
 }
 
-/* SCREEN 1 CLOSING ANIMATION */
+/* SCREEN 1 REVERSE DISAPPEARANCE ANIMATIONS */
 .hero-section.hero-closing {
-  animation: heroScreenClose 0.85s cubic-bezier(0.65, 0, 0.35, 1) forwards;
   pointer-events: none;
 }
 
-@keyframes heroScreenClose {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0px);
-  }
-  30% {
-    opacity: 0.95;
-    transform: scale(0.96);
-    filter: blur(0px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-105%) scale(0.9);
-    filter: blur(4px);
-  }
+/* Background canvas reverse fade & scale */
+.hero-closing .hero-bg-canvas {
+  opacity: 0 !important;
+  transform: scale(1.02) !important;
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1) 0.15s, transform 0.75s cubic-bezier(0.4, 0, 0.2, 1) 0.15s !important;
 }
 
-/* SCREEN 2 (MAIN INVITATION) CONTAINER & ENTRANCE ANIMATION */
+/* Corner frames reverse fade */
+.hero-closing .hero-corner-frame.corner-tl {
+  opacity: 0 !important;
+  transform: translateY(-8px) scaleY(-1) !important;
+  transition: all 0.5s ease !important;
+}
+.hero-closing .hero-corner-frame.corner-tr {
+  opacity: 0 !important;
+  transform: translateY(-8px) scale(-1, -1) !important;
+  transition: all 0.5s ease !important;
+}
+.hero-closing .hero-corner-frame.corner-bl {
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  transition: all 0.5s ease !important;
+}
+.hero-closing .hero-corner-frame.corner-br {
+  opacity: 0 !important;
+  transform: translateY(8px) scaleX(-1) !important;
+  transition: all 0.5s ease !important;
+}
+
+/* Lanterns reverse fade & lift */
+.hero-closing .lantern-wrapper {
+  opacity: 0 !important;
+  transform: translateY(-14px) !important;
+  transition: opacity 0.55s ease, transform 0.55s ease !important;
+}
+
+/* Bismillah reverse fade */
+.hero-closing .hero-bismillah-wrap {
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(-10px) !important;
+  transition: opacity 0.5s ease, transform 0.5s ease !important;
+}
+
+/* Title group reverse fade & scale */
+.hero-closing .hero-arch-ornament {
+  opacity: 0 !important;
+  transform: translateY(-10px) scale(0.92) !important;
+  transition: opacity 0.5s ease, transform 0.5s ease !important;
+}
+
+.hero-closing .hero-event-type {
+  opacity: 0 !important;
+  transform: translateY(-8px) !important;
+  transition: opacity 0.45s ease 0.05s, transform 0.45s ease 0.05s !important;
+}
+
+.hero-closing .hero-thin-line {
+  opacity: 0 !important;
+  transition: opacity 0.4s ease 0.05s !important;
+}
+
+.hero-closing .hero-child-name {
+  opacity: 0 !important;
+  transform: scale(0.94) !important;
+  transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s !important;
+}
+
+.hero-closing .hero-divider-ornament {
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  transition: opacity 0.45s ease 0.1s, transform 0.45s ease 0.1s !important;
+}
+
+/* CTA button reverse fade */
+.hero-closing .hero-cta-wrap {
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(16px) !important;
+  transition: opacity 0.45s ease, transform 0.45s ease !important;
+}
+
+/* SCREEN 2 (MAIN INVITATION) IN-PLACE REVEAL */
 body.site-unlocked .hero-section {
   display: none !important;
 }
@@ -836,7 +897,7 @@ body.site-unlocked .invitation-container {
 body.is-transitioning .invitation-body {
   display: flex;
   opacity: 0;
-  animation: screenTwoEnter 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  animation: screenTwoDissolveEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
 body.site-unlocked .invitation-body {
@@ -845,11 +906,11 @@ body.site-unlocked .invitation-body {
   transform: translateY(0) scale(1);
 }
 
-@keyframes screenTwoEnter {
+@keyframes screenTwoDissolveEnter {
   0% {
     opacity: 0;
-    transform: translateY(80px) scale(0.94);
-    filter: blur(6px);
+    transform: translateY(40px) scale(0.96);
+    filter: blur(4px);
   }
   100% {
     opacity: 1;
