@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('is-transitioning');
         document.body.classList.add('site-unlocked');
         window.scrollTo({ top: 0, behavior: 'instant' });
-      }, 700);
+      }, 750);
     });
   }
 
