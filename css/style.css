@@ -810,7 +810,7 @@ body:not(.site-unlocked) .hero-section {
   }
 }
 
-/* Luxury Section Frame / Card Styling */
+/* Luxury Section Frame / Card Styling (with Content-Visibility Rendering Optimization) */
 .content-section {
   position: relative;
   width: 100%;
@@ -822,6 +822,8 @@ body:not(.site-unlocked) .hero-section {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   text-align: center;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 450px;
 }
 
 @media (max-width: 380px) {
